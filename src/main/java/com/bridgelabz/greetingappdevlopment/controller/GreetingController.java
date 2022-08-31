@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
-
 @RestController
 public class GreetingController {
     private static final String template = "Hello %s";
@@ -51,5 +50,10 @@ public class GreetingController {
     @PostMapping("/saveGreeting")
     public ResponseEntity<Greeting> saveGreeting(@RequestBody Greeting greeting) {
         return new ResponseEntity<Greeting>(greetingService.saveMessage(greeting), HttpStatus.OK);
+    }
+
+    @GetMapping("/findGreeting")
+    public ResponseEntity<String> findGreeting(@RequestParam Integer id) {
+        return new ResponseEntity<String>(greetingService.getData(id), HttpStatus.OK);
     }
 }
